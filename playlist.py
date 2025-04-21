@@ -10,7 +10,7 @@ version = 0.5
 
 app_title = "Playlist v" + str(version)
 
-def show_menu_songs():
+def print_menu():
     os.system("cls" if os.name == "nt" else "clear")
 
     print(app_title)
@@ -18,36 +18,26 @@ def show_menu_songs():
     print("-" * len(app_title))
     
     print("    MENÚ")
+
+
+def show_menu_songs():
+    print_menu()
+
     print("\n", "1. Listar todas las canciones.", "\n", "2. Buscar canción por título", "\n", "0. Volver", "\n")
 
 def show_menu_albums():
-    os.system("cls" if os.name == "nt" else "clear")
+    print_menu()
 
-    print(app_title)
-
-    print("-" * len(app_title))
-    
-    print("    MENÚ")
     print("\n", "1. Listar todos los álbumes.", "\n", "2. Buscar álbum por título", "\n", "0. Volver", "\n")
 
 def show_menu_artists():
-    os.system("cls" if os.name == "nt" else "clear")
+    print_menu()
 
-    print(app_title)
-
-    print("-" * len(app_title))
-    
-    print("    MENÚ")
     print("\n", "1. Listar todos los artistas.", "\n", "2. Buscar artista por nombre", "\n", "0. Volver", "\n")
 
 def show_menu_genres():
-    os.system("cls" if os.name == "nt" else "clear")
+    print_menu()
 
-    print(app_title)
-
-    print("-" * len(app_title))
-    
-    print("    MENÚ")
     print("\n", "1. Listar todos los géneros.", "\n", "2. Buscar género por nombre", "\n", "0. Volver", "\n")
 
 
