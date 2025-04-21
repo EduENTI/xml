@@ -11,44 +11,46 @@ version = 0.5
 app_title = "Playlist v" + str(version)
 
 def show_menu_songs():
+    os.system("cls" if os.name == "nt" else "clear")
+
+    print(app_title)
+
+    print("-" * len(app_title))
+    
+    print("    MENÚ")
     print("\n", "1. Listar todas las canciones.", "\n", "2. Buscar canción por título", "\n", "0. Volver", "\n")
 
 def show_menu_albums():
+    os.system("cls" if os.name == "nt" else "clear")
+
+    print(app_title)
+
+    print("-" * len(app_title))
+    
+    print("    MENÚ")
     print("\n", "1. Listar todos los álbumes.", "\n", "2. Buscar álbum por título", "\n", "0. Volver", "\n")
 
 def show_menu_artists():
+    os.system("cls" if os.name == "nt" else "clear")
+
+    print(app_title)
+
+    print("-" * len(app_title))
+    
+    print("    MENÚ")
     print("\n", "1. Listar todos los artistas.", "\n", "2. Buscar artista por nombre", "\n", "0. Volver", "\n")
 
 def show_menu_genres():
+    os.system("cls" if os.name == "nt" else "clear")
+
+    print(app_title)
+
+    print("-" * len(app_title))
+    
+    print("    MENÚ")
     print("\n", "1. Listar todos los géneros.", "\n", "2. Buscar género por nombre", "\n", "0. Volver", "\n")
 
 
-#xml_ejemplo = '<personaje><nombre>Jacinto</nombre><edad valor="33" /></personaje>'
-
-#print(xml_ejemplo)
-
-#personaje = BeautifulSoup(xml_ejemplo, 'xml')
-
-#print(personaje.prettify())
-
-#nombre = personaje.nombre
-
-#print(nombre)
-
-#print(nombre.contents)
-
-#print(nombre.text)
-
-
-#song_xml = open("songs/song_1.xml", "r").read()
-
-#song = BeautifulSoup(song_xml, "xml")
-
-#print(song.title.text)
-#print(int(song.duration["seconds"])/60)
-
-#for artist in song.artists.find_all("artist"):
- #   print(artist.text)
 
 error = 0
 
@@ -78,8 +80,67 @@ while True:
             error = 1
         else:
             os.system("cls" if os.name == "nt" else "clear")
-            print("Escogiste el numero", respuesta)
+
+            respuesta = int(respuesta)
+
+            if (respuesta == 1):
+                show_menu_albums()
+            elif (respuesta == 2):
+                show_menu_artists()
+            elif (respuesta == 3):
+                show_menu_songs()
+            elif (respuesta == 4):
+                show_menu_genres()
+            elif (respuesta == 0):
+                print("Escogiste el numero", respuesta)
             break
+
     else:
         print("ERROR 02: Debes introducir un número.")
         error = 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#xml_ejemplo = '<personaje><nombre>Jacinto</nombre><edad valor="33" /></personaje>'
+
+#print(xml_ejemplo)
+
+#personaje = BeautifulSoup(xml_ejemplo, 'xml')
+
+#print(personaje.prettify())
+
+#nombre = personaje.nombre
+
+#print(nombre)
+
+#print(nombre.contents)
+
+#print(nombre.text)
+
+
+#song_xml = open("songs/song_1.xml", "r").read()
+
+#song = BeautifulSoup(song_xml, "xml")
+
+#print(song.title.text)
+#print(int(song.duration["seconds"])/60)
+
+#for artist in song.artists.find_all("artist"):
+ #   print(artist.text)
+
+
