@@ -46,13 +46,7 @@ error = 0
 
 while True:
 
-    os.system("cls" if os.name == "nt" else "clear")
-
-    print(app_title)
-
-    print("-" * len(app_title))
-    
-    print("    MENÚ")
+    print_menu()
 
     print("\n", "1. Álbumes", "\n", "2. Artistas", "\n", "3. Canciones", "\n", "4. Géneros", "\n", "0. Salir", "\n")
     
