@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<song id="">
+	<title>Scary Monsters and Nice Sprites</title>
+	<artists>
+		<artist id="1">Skrillex</artist>
+		<artist id="2">María del Monte</artist>
+	</artists>
+	<genres>
+		<genre id="" />
+		<genre id="" />
+	</genres>
+	<duration second="" /> 
+	<lyrics lang="en" format="str">
+		00:02:17,440 --> 00:02:20,375
+		Yes, oh my god
+		
+		00:02:27,440 --> 00:02:40,275
+		Yes, oh my god
+		
+		00:04:17,440 --> 00:05:20,375
+		Look at this, I'm a coward too
+		You don't need to hide, my friend
+		For I'm just like you
+	</lyrics>
+	<album id="" />
+	<record_label id="" />
+</song>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<artist>
+	<name></name>
+	<nationality country="" />
+	<birth date="" />
+	<death date="" />
+	<albums>
+		<album id="" />
+	</albums>
+	
+</artist>

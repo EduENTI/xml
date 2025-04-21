@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<song id="21">
+	<title>Año Nuevo</title>
+	<artists>
+		<artist id="2">Vetusta Morla</artist>
+	</artists>
+	<genres>
+		<genre id="2" />
+	</genres>
+	<duration seconds="267" /> 
+	<lyrics lang="es" format="txt">
+Pintar, otra vez esta habitación
+No me convence para nada este color
+Votar, si el botón es una buena opción
+Votar, si hoy hacemos el amor
+Cuadrar el círculo de esta obsesión, no, no
+Asumir que rendirse no es una opción, no, no
+Saber que no os puedo aniquilar
+No es suficiente para firmar
+La Paz, Bolivia; Quito es Ecuador
+Lima está en Perú; Buenos Aires, Argentina
+No llores por mí más
+Cayó el puente que nos vio nacer
+El estribillo hoy no se quedará a comer
+Saber que no os puedo colonizar
+No es suficiente para firmar
+La Paz, Bolivia; Quito es Ecuador
+Lima está en Perú; Buenos Aires, Argentina
+No llores por mí más
+Ah-ah-ah-as
+Ah-ah-ah-as
+Ah-ah-ah-as
+Ah-ah-ah-as
+La Paz, Bolivia; Quito es Ecuador
+Lima está en Perú; Buenos Aires, Argentina
+No llores por mí más
+Ah-ah-ah-as
+Ah-ah-ah-as
+Argentina, no llores por mí más
+	</lyrics>
+	<album id="2" />
+</song>

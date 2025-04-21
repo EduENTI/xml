@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<album id="1">
+	<title>La Ley Innata</title>
+	<cover src="/covers/laleyinnata.jpg" />
+	<songs>
+		<song id="7" />
+		<song id="8" />
+		<song id="9" />
+		<song id="10" />
+		<song id="11" />
+		<song id="12" />
+	</songs>
+</album>

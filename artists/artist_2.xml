@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<artist>
+	<name>Vetusta Morla</name>
+	<nationality country="es" />
+	<birth date="1998-12-30" />
+	<albums>
+		<album id="2" />
+	</albums>
+	
+</artist>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<album id="2">
+	<title>Un Día en el Mundo</title>
+	<cover src="/covers/undiaenelmundo.jpg" />
+	<songs>
+		<song id="1" />
+		<song id="2" />
+		<song id="3" />
+		<song id="4" />
+		<song id="5" />
+		<song id="6" />
+		<song id="7" />
+		<song id="8" />
+		<song id="9" />
+		<song id="10" />
+		<song id="11" />
+		<song id="12" />
+	</songs>
+</album>

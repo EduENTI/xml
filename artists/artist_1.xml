@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<artist>
+	<name>Extremoduro</name>
+	<nationality country="es" />
+	<birth date="1988-04-08" />
+	<albums>
+		<album id="1" />
+		<album id="3" />
+	</albums>
+	
+</artist>

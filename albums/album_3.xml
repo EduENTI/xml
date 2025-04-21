@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<album id="3">
+	<title>Material Defectuoso</title>
+	<cover src="/covers/materialdefectuoso.jpg" />
+	<songs>
+		<song id="1" />
+		<song id="2" />
+		<song id="3" />
+		<song id="4" />
+		<song id="5" />
+		<song id="6" />
+	</songs>
+</album>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<song id="6">
+	<title>Calle Esperanza s/n</title>
+	<artists>
+		<artist id="1">Extremoduro</artist>
+	</artists>
+	<genres>
+		<genre id="1" />
+	</genres>
+	<duration seconds="426" /> 
+	<lyrics lang="es" format="txt">
+Arde al atardecer
+Entera la ciudad
+No hay tiempo que perder
+Si queremos escapar
+Intento comprender
+Qué fue lo que pasó
+Algo no andaba bien
+Los celos, que sé yo
+Sé que no
+Que no hago bien en decir
+Que soy capaz
+De imaginarla y sufrir
+Tumbadita en el suelo
+Tomando el sol en cuero
+Sol, que despacio vas
+No será que te has parado a mirar
+No sé qué desayunar
+Estando ella entre croissants
+Vuelve, que tengo, vida, las luces encendidas
+Para así comprender, para ver
+Vuelve, que me he encontrado un tesoro enterrado
+Que llevo a flor de piel, cuéntame
+¿Tu casa dónde está?
+Entre viento y nieve
+No me pienso alejar
+Por si se mueve
+¿Tu casa dónde está?
+Entre viento y nieve
+No me pienso alejar
+Por si se mueve
+	</lyrics>
+	<album id="3" />
+</song>
