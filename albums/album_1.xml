@@ -3,7 +3,7 @@
 	<title>La Ley Innata</title>
 	<cover src="laleyinnata.jpg" />
 	<artists>
-		<artist id="1" />
+		<artist id="1">Extremoduro</artist>
 	</artists>
 	<songs>
 		<song id="7">Dulce Introducción al Caos</song>

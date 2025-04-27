@@ -3,14 +3,14 @@
 	<title>Material Defectuoso</title>
 	<cover src="materialdefectuoso.jpg" />
 	<artists>
-		<artist id="1" />
+		<artist id="1">Extremoduro</artist>
 	</artists>
 	<songs>
-		<song id="1" />
-		<song id="2" />
-		<song id="3" />
-		<song id="4" />
-		<song id="5" />
-		<song id="6" />
+		<song id="1">Desarraigo</song>
+		<song id="2">Mi Espíritu Imperecedero</song>
+		<song id="3">Otra Inútil Canción para la Paz</song>
+		<song id="4">Si Te Vas...</song>
+		<song id="5">Tango Suicida</song>
+		<song id="6">Calle Esperanza s/n</song>
 	</songs>
 </album>

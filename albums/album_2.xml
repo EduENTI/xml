@@ -3,20 +3,20 @@
 	<title>Un Día en el Mundo</title>
 	<cover src="undiaenelmundo.jpg" />
 	<artists>
-		<artist id="2" />
+		<artist id="2">Vetusta Morla</artist>
 	</artists>
 	<songs>
-		<song id="1" />
-		<song id="2" />
-		<song id="3" />
-		<song id="4" />
-		<song id="5" />
-		<song id="6" />
-		<song id="7" />
-		<song id="8" />
-		<song id="9" />
-		<song id="10" />
-		<song id="11" />
-		<song id="12" />
+		<song id="13">Autocrítica</song>
+		<song id="14">Sálvese Quien Pueda</song>
+		<song id="15">Un Día en el Mundo</song>
+		<song id="16">Copenhague</song>
+		<song id="17">Valiente</song>
+		<song id="18">La Marea</song>
+		<song id="19">Pequeño Desastre Animal</song>
+		<song id="20">La Cuadratura del Círculo</song>
+		<song id="21">Año Nuevo</song>
+		<song id="22">Rey Sol</song>
+		<song id="23">Saharabbey Road</song>
+		<song id="24">Al Respirar</song>
 	</songs>
 </album>
