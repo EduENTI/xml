@@ -43,9 +43,22 @@ def print_menu():
     print("    MENÚ")
 
 def show_menu_songs():
-    print_menu()
+    
+    while True:
+        print_menu()
+        print("\n1. Listar todas las canciones.\n2. Buscar canción por título\n0. Volver\n")
+    
+        option = input("Elige una opción: ")
 
-    print("\n1. Listar todas las canciones.\n", "2. Buscar canción por título\n", "0. Volver\n")
+        if option == "0":
+            break
+        elif option == "1":
+            list_all_songs()
+            input("\nPresiona Enter para continuar...")
+        elif option == "2":
+            print("Buscar canción -pendiente-.")
+        else:
+            print("ERROR 01: La opción elegida no es válida.")
 
 def show_menu_albums():
     while True:
@@ -65,23 +78,46 @@ def show_menu_albums():
             print("ERROR 01: La opción elegida no es válida.")
 
 def show_menu_artists():
-    print_menu()
+     while True:
+        print_menu()
+        print("\n1. Listar todos los artistas.\n2. Buscar artista por nombre.\n0. Volver\n")
 
-    print("\n1. Listar todos los artistas.\n2. Buscar artista por nombre\n0. Volver\n")
+        option = input("Elige una opción: ")
+
+        if option == "0":
+            break
+        elif option == "1":
+            list_all_artists()
+            input("\nPresiona Enter para continuar...")
+        elif option == "2":
+            print("Buscar artista -pendiente-.")
+        else:
+            print("ERROR 01: La opción elegida no es válida.")
 
 def show_menu_genres():
-    print_menu()
+    while True:
+        print_menu()
+        print("\n1. Listar todos los géneros.\n2. Buscar género por nombre.\n0. Volver\n")
 
-    print("\n1. Listar todos los géneros.\n2. Buscar género por nombre\n0. Volver\n")
+        option = input("Elige una opción: ")
 
+        if option == "0":
+            break
+        elif option == "1":
+            list_all_genres()
+            input("\nPresiona Enter para continuar...")
+        elif option == "2":
+            print("Buscar género -pendiente-.")
+        else:
+            print("ERROR 01: La opción elegida no es válida.")
 
 
 
 
 
 def list_all_albums():
-    print("\n    LISTADO DEL ÁLBUMES\n")
-    print(" "* 3, "-" * 20)
+    print("\n    LISTADO DE ÁLBUMES\n")
+    print(" " * 3, "-" * 20)
 
     for album in albums:
         print(f"\nID: {album['id']}")
@@ -90,6 +126,38 @@ def list_all_albums():
         print(f"Canciones: {len(album['songs'])}")
         print(" " * 3, "-" * 20)
 
+def list_all_songs():
+    print("\n    LISTADO DE CANCIONES\n")
+    print(" " * 3, "-" * 20)
+
+    for song in songs:
+        print(f"\nID: {song['id']}")
+        print(f"\nTítulo: {song['title']}")
+        print(f"Artistas: {', '.join([a['name'] for a in song['artists']])}")
+        print(f"Duración: {song['duration']} segundos")
+        print(f"Álbum ID: {song['album_id']}")
+        print(" " * 3, "-" * 20)
+
+def list_all_artists():
+    print("\n    LISTADO DE ARTISTAS\n")
+    print(" " * 3, "-" * 20)
+
+    for artist in artists:
+        print(f"\nNombre: {artist['name']}")
+        print(f"Nacionalidad: {artist.get('nationality', 'Desconocida')}")
+        print(f"Nacimiento: {artist.get('birth_date', 'No disponible')}")
+        print(f"Álbumes: {len(artist.get('albums', []))}")
+        print(" " * 3, "-" * 20)
+
+def list_all_genres():
+    print("\nLISTADO DE GÉNEROS\n")
+    print(" " * 3, "-" * 20)
+    for genre in genres:
+        print(f"\nID: {genre['id']}")
+        print(f"Nombre: {genre['name']}")
+        print(f"Origen: {genre.get('origin', 'Desconocido')}")
+        print(f"Canciones asociadas: {sum(1 for song in songs if genre['id'] in song['genres'])}")
+        print(" " * 3, "-" * 20)
 
 
 
@@ -133,12 +201,72 @@ def load_album_file(file_name):
 
     return album
 
+def load_song_file(file_name):
+    file_path = SONGS_PATH+file_name
+
+    song_xml = open_xml(file_path)
+
+    song = {
+        "id": song_xml.song["id"],
+        "title": song_xml.title.text,
+        "artists": [],
+        "genres": [],
+        "duration": int(song_xml.duration["seconds"]),
+        "album_id": song_xml.album["id"]
+    }
+
+    for artist in song_xml.artists.find_all("artist"):
+        song["artists"].append({
+            "id": artist["id"],
+            "name": artist.text
+            })
+
+    for genre in song_xml.genres.find_all("genre"):
+        song["genres"].append(genre["id"])
 
 
-def load_album_num(album_num):
-    global ALBUMS_PATH
+    return song
 
-    file_name = "album_"+str(album_name)+".xml"
+def load_artist_file(file_name):
+    file_path = ARTISTS_PATH+file_name
+
+    artist_xml = open_xml(file_path)
+
+    artist = {
+        "id": artist_xml.artist["id"],
+        "name": artist_xml.find('name').text,
+        "nationality": artist_xml.nationality["country"],
+        "birth_date": artist_xml.birth["date"],
+        "albums":[]
+    }
+    
+    albums = artist_xml.find('albums')
+
+    if albums:
+        for album in albums.find_all("album"):
+            artist["albums"].append(album["id"])
+
+    return artist
+
+
+def load_genre_file(file_name):
+    file_path = GENRES_PATH+file_name
+    genre_xml = open_xml(file_path)
+    
+    genre = {
+        "id": genre_xml.genre["id"],
+        "name": genre_xml.find('name').text,
+        "origin": genre_xml.origin["country"]
+    }
+    
+    return genre
+
+
+
+#def load_album_num(album_num):
+ #   global ALBUMS_PATH
+#
+ #   file_name = "album_"+str(album_name)+".xml"
 
    
 
@@ -151,15 +279,62 @@ def load_albums():
     albums_dir = os.listdir(ALBUMS_PATH)
 
     for album in albums_dir:
-        if not album.endswith(".xml") and not album.startswith("album_"):
+        if not album.endswith(".xml") or not album.startswith("album_"):
             continue
         albums.append(load_album_file(album))
 
     albums.sort(key=lambda x: int(x['id']))
 
+def load_songs():
+    global SONGS_PATH
+    global songs
+
+    songs = []
+
+    songs_dir = os.listdir(SONGS_PATH)
+
+    for song in songs_dir:
+        if not song.startswith("song_") or not song.endswith(".xml"):
+            continue
+        songs.append(load_song_file(song))
+
+    songs.sort(key=lambda x: int(x['id']))
+
+
+def load_artists():
+    global ARTISTS_PATH
+    global artists
+
+    artists = []
+
+    artists_dir = os.listdir(ARTISTS_PATH)
+
+    for artist in artists_dir:
+        if not artist.startswith("artist_") or not artist.endswith(".xml"):
+            continue
+        artists.append(load_artist_file(artist))
+
+    artists.sort(key=lambda x: x['name'].lower())
+
+def load_genres():
+    global GENRES_PATH
+    global genres
+
+    genres =[]
+
+    genres_dir = os.listdir(GENRES_PATH)
+
+    for genre in genres_dir:
+        if not genre.startswith("genre_") or not genre.endswith(".xml"):
+            continue
+        genres.append(load_genre_file(genre))
+
+    genres.sort(key=lambda x: int(x['id']))
 
 load_albums()
-
+load_songs()
+load_artists()
+load_genres()
 
 while True:
 
@@ -199,36 +374,4 @@ while True:
         print("ERROR 02: Debes introducir un número.")
         error = 2
 
-
-
-
-
-
-"""
-
-    album = {
-        "id": album_xml.album["id"],
-        "title": album_xml.album["title"].text,
-        "cover": "IMAGEN",
-        "artists": [
-                {
-                    "id": 1,
-                    "name": "NOMBRE!!"
-                }
-            ]
-        "songs": [
-                {
-                    "id": 1,
-                    "title": "TÍTULO!!"
-                },
-                {
-                    "id": 2,
-                    "title": "TÍTULO!!"
-                }
-
-            ]
-
-    }
-
-"""
 
