@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <album id="1">
 	<title>La Ley Innata</title>
-	<cover src="/covers/laleyinnata.jpg" />
+	<cover src="laleyinnata.jpg" />
+	<artists>
+		<artist id="1" />
+	</artists>
 	<songs>
-		<song id="7" />
-		<song id="8" />
-		<song id="9" />
-		<song id="10" />
-		<song id="11" />
-		<song id="12" />
+		<song id="7">Dulce Introducción al Caos</song>
+		<song id="8">Primer Movimiento: El Sueño</song>
+		<song id="9">Segundo Movimiento: Lo de Fuera</song>
+		<song id="10">Tercer Movimiento: Lo de Dentro</song>
+		<song id="11">Cuarto Movimiento: La Realidad</song>
+		<song id="12">Coda Flamenca: Otra Realidad</song>
 	</songs>
 </album>

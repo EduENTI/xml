@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <album id="2">
 	<title>Un Día en el Mundo</title>
-	<cover src="/covers/undiaenelmundo.jpg" />
+	<cover src="undiaenelmundo.jpg" />
+	<artists>
+		<artist id="2" />
+	</artists>
 	<songs>
 		<song id="1" />
 		<song id="2" />

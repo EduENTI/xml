@@ -3,8 +3,21 @@
 from bs4 import BeautifulSoup
 import os
 
+ALBUMS_PATH = "albums/"
+ARTISTS_PATH = "artists/"
+SONGS_PATH = "songs/"
+GENRES_PATH = "genres/"
+COVERS_PATH = "covers/"
 
 
+albums = []
+artists = []
+songs = []
+genres = []
+covers = []
+
+
+error = 0
 
 version = 0.5
 
@@ -41,8 +54,44 @@ def show_menu_genres():
     print("\n", "1. Listar todos los géneros.", "\n", "2. Buscar género por nombre", "\n", "0. Volver", "\n")
 
 
+def open_xml(file_path):
+    file_xml = open(file_path, "r").read()
 
-error = 0
+    return BeautifulSoup(file_xml, 'xml')
+
+
+def load_album_file():
+    file_path = ALBUM_PATH+file_name
+
+    album_xml = open_xml(file_path)
+
+    album = {
+        "id": album_xml.album["id"],
+        "title": album_xml.title.text
+    }
+
+    return album
+
+
+
+def load_album_num(album_num):
+    global ALBUMS_PATH
+
+    file_name = "album_"+str(album_name)+".xml"
+
+   
+
+def load_albums():
+    global ALBUM_PATH
+    global albums
+
+    albums_dir = os.listdir(ALBUMS_PATH)
+
+    for album in albums_dir:
+        if not album.endswith(".xml"):
+            continue
+        albums.append(load_album_file(album))
+
 
 while True:
 
@@ -59,7 +108,7 @@ while True:
     
     if respuesta.isdigit():
 
-        if (int(respuesta) < 0 or int(respuesta) > 4):
+        if (int(respuesta) < 0 and int(respuesta) > 4):
             print("ERROR 01: La opción elegida no es válida.")
             error = 1
         else:
@@ -85,7 +134,7 @@ while True:
 
 
 
-
+load_albums()
 
 
 
@@ -127,4 +176,34 @@ while True:
 #for artist in song.artists.find_all("artist"):
  #   print(artist.text)
 
+
+
+
+"""
+
+    album = {
+        "id": album_xml.album["id"],
+        "title": album_xml.album["title"].text,
+        "cover": "IMAGEN",
+        "artists": [
+                {
+                    "id": 1,
+                    "name": "NOMBRE!!"
+                }
+            ]
+        "songs": [
+                {
+                    "id": 1,
+                    "title": "TÍTULO!!"
+                },
+                {
+                    "id": 2,
+                    "title": "TÍTULO!!"
+                }
+
+            ]
+
+    }
+
+"""
 

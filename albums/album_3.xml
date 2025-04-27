@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <album id="3">
 	<title>Material Defectuoso</title>
-	<cover src="/covers/materialdefectuoso.jpg" />
+	<cover src="materialdefectuoso.jpg" />
+	<artists>
+		<artist id="1" />
+	</artists>
 	<songs>
 		<song id="1" />
 		<song id="2" />
