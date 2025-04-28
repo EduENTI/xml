@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE album SYSTEM "album.dtd">
 <album id="1">
 	<title>La Ley Innata</title>
 	<cover src="laleyinnata.jpg" />

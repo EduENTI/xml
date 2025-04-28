@@ -113,6 +113,16 @@ def show_menu_genres():
 
 
 
+def show_album_cover():
+    for album in albums:
+        if album_id != album["id"]:
+            continue
+
+        ascii_img = ascii_py.asciiImage()
+        img = ascii_img.img2ascii(COVERS_PATH+album["cover"])
+
+
+
 
 
 def list_all_albums():
@@ -143,6 +153,7 @@ def list_all_artists():
     print(" " * 3, "-" * 20)
 
     for artist in artists:
+        print(f"ID: {artist['id']}")
         print(f"\nNombre: {artist['name']}")
         print(f"Nacionalidad: {artist.get('nationality', 'Desconocida')}")
         print(f"Nacimiento: {artist.get('birth_date', 'No disponible')}")
@@ -152,6 +163,7 @@ def list_all_artists():
 def list_all_genres():
     print("\nLISTADO DE GÉNEROS\n")
     print(" " * 3, "-" * 20)
+
     for genre in genres:
         print(f"\nID: {genre['id']}")
         print(f"Nombre: {genre['name']}")
@@ -178,7 +190,7 @@ def load_album_file(file_name):
     album = {
         "id": album_xml.album["id"],
         "title": album_xml.title.text,
-        "cover": None,
+        "cover": album_xml.cover["src"],
         "artists": [],
         "songs": []
     }
@@ -314,7 +326,7 @@ def load_artists():
             continue
         artists.append(load_artist_file(artist))
 
-    artists.sort(key=lambda x: x['name'].lower())
+    artists.sort(key=lambda x: int(x['id']))
 
 def load_genres():
     global GENRES_PATH

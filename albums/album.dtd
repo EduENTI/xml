@@ -1,0 +1,20 @@
+<!DOCTYPE album[
+
+<!ATTLIST album id CDATA #REQUIRED>
+<!ELEMENT album (title, cover?, artists, songs)>
+
+<!ELEMENT title (#PCDATA)>
+
+<!ELEMENT cover>
+<!ATTLIST cover src CDATA #REQUIRED>
+
+<!ELEMENT artists (artist+)>
+<!ELEMENT artist (#PCDATA)>
+<!ATTLIST artist id CDATA #REQUIRED>
+<!ATTLIST artist roles CDATA #IMPLIED>
+
+<!ELEMENT songs (song+)>
+<!ELEMENT song (#PCDATA)>
+<!ATTLIST song id CDATA #REQUIRED>
+
+]>
