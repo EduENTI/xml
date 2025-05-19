@@ -3,6 +3,10 @@
 from bs4 import BeautifulSoup
 import os
 import base64
+import time
+from io import BytesIO
+from PIL import Image
+
 
 #Constantes rutas a directorios
 ALBUMS_PATH = "albums/"
@@ -24,6 +28,182 @@ error = 0
 version = 0.5
 
 app_title = "Playlist v" + str(version)
+
+
+
+def menu_album_selected():
+    while True:
+
+        print_menu()
+
+        print("\nÁlbumes disponibles:")
+
+        for album in albums:
+            print(f"ID: {album['id']} - {album['title']}")
+
+        album_id = input("Introduce el ID de un álbum (0 para volver): ")
+
+        if not album_id.isdigit():
+            print("ERROR 02: Debes introducir un número.")
+            time.sleep(1.5)
+            continue
+
+        album_id = int(album_id)
+
+        if album_id == 0:
+            break
+
+        if album_id < 1 or album_id > len(albums):
+            print("ERROR 03: ID de álbum no válido.")
+            time.sleep(1.5)
+            continue
+        
+        selected_album = next((album for album in albums if int(album['id']) == album_id), None)
+
+        if not selected_album:
+            print("ERROR 03: ID de álbum no válido.")
+            time.sleep(1.5)
+            continue
+
+        while True:
+            print_menu()
+            print(f"\nÁLBUM SELECCIONADO: {selected_album['title']}")
+            print("\n1. Mostrar todas las canciones del álbum.\n2. Mostrar artistas del álbum.\n3. Mostrar géneros del álbum.\n4. Mostrar portada del álbum.\n0. Volver a la selección de álbumes.")
+
+            option = input("\nElige una opción: ")
+
+            if option == "0":
+                break
+            elif option == "1":
+
+                print(f"\nCANCIONES DEL ÁLBUM '{selected_album['title']}':")
+                print(" " * 3, "-" * 40)
+
+                for song_id in selected_album['songs']:
+                    song = next((s for s in songs if s['id'] == song_id['id']), None)
+
+                    if song:
+                        print(f"\nID: {song['id']}")
+                        print(f"Título: {song['title']}")
+                        print(f"Duración: {song['duration']} segundos")
+                        print(" " * 3, "-" * 40)
+
+                input("\nPresiona Enter para continuar...")
+                
+            elif option == "2":
+
+                print(f"\nARTISTAS DEL ÁLBUM '{selected_album['title']}':")
+                print(" " * 3, "-" * 40)
+
+                for artist in selected_album['artists']:
+                    artist_info = next((a for a in artists if a['id'] == artist['id']), None)
+
+                    if artist_info:
+                        print(f"\nID: {artist_info['id']}")
+                        print(f"Nombre: {artist_info['name']}")
+                        print(f"Nacionalidad: {artist_info.get('nationality', 'Desconocida')}")
+                        print(" " * 3, "-" * 40)
+
+                input("\nPresiona Enter para continuar...")
+                
+            elif option == "3":
+
+                print(f"\nGÉNEROS DEL ÁLBUM '{selected_album['title']}':")
+                print(" " * 3, "-" * 40)
+
+                album_genres = set()
+
+                for song_id in selected_album['songs']:
+                    song = next((s for s in songs if s['id'] == song_id['id']), None)
+
+                    if song:
+                        album_genres.update(song['genres'])
+                
+                for genre_id in album_genres:
+                    genre = next((g for g in genres if g['id'] == genre_id), None)
+
+                    if genre:
+                        print(f"\nID: {genre['id']}")
+                        print(f"Nombre: {genre['name']}")
+                        print(f"Origen: {genre.get('origin', 'Desconocido')}")
+                        print(" " * 3, "-" * 40)
+
+                input("\nPresiona Enter para continuar...")
+                
+            elif option == "4":
+                print(f"\nPORTADA DEL ÁLBUM '{selected_album['title']}':")
+                img = Image.open(BytesIO(base64.b64decode(selected_album['cover']))).convert("L").resize((60, 30))
+                ascii_chars = "@%#*+=-:. "
+                pixels = list(img.getdata())
+                print("\n".join("".join(ascii_chars[min(pixel // 25, len(ascii_chars) - 1)] for pixel in pixels[i:i+60]) for i in range(0, len(pixels), 60)))
+                input("\nPresiona Enter para continuar...")
+
+            else:
+                print("ERROR 03: Opción no válida.")
+                time.sleep(1.5)
+
+
+        print("\n1. Listar todas las canciones.\n2. Buscar canción por título\n0. Volver\n")
+
+
+
+
+def search_song_by_title():
+    print_menu()
+    query = input("Introduce el titulo de la canción: ").lower()
+
+    resultados = [song for song in songs if query in song["title"].lower()]
+
+    if resultados:
+        print("\nResultados:")
+        for song in resultados:
+            print(f"ID: {song['id']} | Título: {song['title']}")
+    else:
+        print("No se han encontrado canciones.")
+
+
+def search_album_by_title():
+    print_menu()
+    query = input("Introduce el título del álbum: ").lower()
+
+    resultados = [album for album in albums if query in album['title'].lower()]
+
+    if resultados:
+        print("\nResultados:")
+        for album in resultados:
+            print(f"ID: {album['id']} | Título: {album['title']}")
+    else:
+        print("No se han encontrado álbumes.")
+
+def search_artist_by_name():
+    print_menu()
+    query = input("Introduce el nombre del artista: ").lower()
+
+    resultados = [artist for artist in artists if query in artist['name'].lower()]
+
+    if resultados:
+        print("\nResultados:")
+        for artist in resultados:
+            print(f"ID: {artist['id']} | Título: {artist['name']}")
+    else:
+        print("No se han encontrado artistas.")
+
+
+def search_genre_by_name():
+    print_menu()
+    query = input("Introduce el nombre del genero: ").lower()
+
+    resultados = [genre for genre in genres if query in genre['name'].lower()]
+
+    if resultados:
+        print("\nResultados:")
+        for genre in resultados:
+            print(f"ID: {genre['id']} | Título: {genre['name']}")
+    else:
+        print("No se han encontrado artistas.")
+
+
+
 
 
 
@@ -56,14 +236,18 @@ def show_menu_songs():
             list_all_songs()
             input("\nPresiona Enter para continuar...")
         elif option == "2":
-            print("Buscar canción -pendiente-.")
+            search_song_by_title()
+            input("\nPresiona Enter para continuar...")
+
         else:
             print("ERROR 01: La opción elegida no es válida.")
+            time.sleep(1.5)
+
 
 def show_menu_albums():
     while True:
         print_menu()
-        print("\n1. Listar todos los álbumes.\n2. Buscar álbum por título.\n0. Volver\n")
+        print("\n1. Listar todos los álbumes.\n2. Buscar álbum por título.\n3. Seleccionar álbum por id.\n0. Volver\n")
 
         option = input("Elige una opción: ")
 
@@ -73,9 +257,17 @@ def show_menu_albums():
             list_all_albums()
             input("\nPresiona Enter para continuar...")
         elif option == "2":
-            print("Buscar álbum -pendiente-.")
+            search_album_by_title()
+            input("\nPresiona Enter para continuar...")
+
+        elif option == "3":
+            menu_album_selected()
+            input("\nPresiona Enter para continuar...")
+
         else:
             print("ERROR 01: La opción elegida no es válida.")
+            time.sleep(1.5)
+
 
 def show_menu_artists():
      while True:
@@ -90,9 +282,12 @@ def show_menu_artists():
             list_all_artists()
             input("\nPresiona Enter para continuar...")
         elif option == "2":
-            print("Buscar artista -pendiente-.")
+            search_artist_by_name()
+            input("\nPresiona Enter para continuar...")
+
         else:
             print("ERROR 01: La opción elegida no es válida.")
+            time.sleep(1.5)
 
 def show_menu_genres():
     while True:
@@ -107,7 +302,9 @@ def show_menu_genres():
             list_all_genres()
             input("\nPresiona Enter para continuar...")
         elif option == "2":
-            print("Buscar género -pendiente-.")
+            search_genre_by_name()
+            input("\nPresiona Enter para continuar...")
+
         else:
             print("ERROR 01: La opción elegida no es válida.")
 
